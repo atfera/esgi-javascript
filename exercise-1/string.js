@@ -18,6 +18,7 @@ console.log(capitalize(text));
 
 // camelCase
 function camelCase(text){
+  if (typeof text !== 'string') return '';
   return text.replace(/\s/g, '');
 }
 console.log(camelCase(text));
@@ -42,6 +43,8 @@ console.log(leet(text));
 
 // prop_access
 function prop_access(obj, attr){
+  if (typeof attr !== 'string') return '';
+
   let args = attr.split('.');
   let path = args[0];
   let value = obj;
@@ -88,7 +91,7 @@ function ordA(a) {
 }
 
 // vigenere
-function vigenere(text, key, decode) {
+function vig(text, key, decode) {
   let i = 0, b;
   key = key.toUpperCase().replace(/[^A-Z]/g, '');
   return text.toUpperCase().replace(/[^A-Z]/g, '').replace(/[A-Z]/g, function(a) {
@@ -98,8 +101,8 @@ function vigenere(text, key, decode) {
 }
 
 let key = 'esgi';
-let enc = vigenere(text,key);
-let dec = vigenere(enc,key,true);
+let enc = vig(text,key);
+let dec = vig(enc,key,true);
 
 console.log(enc);
 console.log(dec);
