@@ -24,7 +24,11 @@ console.log(capitalize(text));
 // camelCase
 function camelCase(text){
   if (!isString(text)) return '';
-  return text.replace(/\s/g, '');
+  //return text.replace(/\s/g, '');
+    return text
+        .split(' ')
+        .map(s => ucfirst(s))
+        .join('');
 }
 console.log(camelCase(text));
 
