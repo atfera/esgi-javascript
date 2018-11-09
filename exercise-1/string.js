@@ -105,7 +105,7 @@ function vig(text, key, decode) {
       key = key.toUpperCase().replace(/[^A-Z]/g, '');
       return text.toUpperCase().replace(/[^A-Z]/g, '').replace(/[A-Z]/g, function(a) {
           b = key[i++ % key.length];
-          return String.fromCharCode(((ordA(a) + (decode ? 26 - ordA(b) : ordA(b))) % 26 + 65));
+          return String.fromCharCode(((ordA(a) + (decode ? 26 - ordA(b) : ordA(b))) % 26 + 65)).toLocaleLowerCase();
       });
     }
 }
