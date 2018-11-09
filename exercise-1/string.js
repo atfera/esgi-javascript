@@ -1,55 +1,61 @@
 let text = 'hello world';
 
+function isString(text) {
+  return typeof text === 'string';
+}
+
 // ucfirst
 function ucfirst(text){
-  return text.charAt(0).toUpperCase() + text.substr(1);
+  if (isString(text)) return text.charAt(0).toUpperCase() + text.substr(1);
 }
 console.log(ucfirst(text));
 
 //capitalize
 function capitalize(text) {
-  return text
-    .toLowerCase()
-    .split(' ')
-    .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
-    .join(' ');
+  if (isString(text))
+    return text
+      .toLowerCase()
+      .split(' ')
+      .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
+      .join(' ');
 }
 console.log(capitalize(text));
 
 // camelCase
 function camelCase(text){
-  if (typeof text !== 'string') return '';
+  if (!isString(text)) return '';
   return text.replace(/\s/g, '');
 }
 console.log(camelCase(text));
 
 // snake_case
 function snake_case(text) {
-  return text.toLowerCase().replace(/\s/g, '_');
+  if (isString(text)) return text.toLowerCase().replace(/\s/g, '_');
 }
 console.log(snake_case(text));
 
 // leet
 function leet(text) {
-  return text
-    .replace(/A|a/g, '4')
-    .replace(/E|e/g, '3')
-    .replace(/I|i/g, '1')
-    .replace(/O|o/g, '0')
-    .replace(/U|u/g, '(_)')
-    .replace(/Y|y/g, '7');
+  if (isString(text))
+    return text
+      .replace(/A|a/g, '4')
+      .replace(/E|e/g, '3')
+      .replace(/I|i/g, '1')
+      .replace(/O|o/g, '0')
+      .replace(/U|u/g, '(_)')
+      .replace(/Y|y/g, '7');
 }
 console.log(leet(text));
 
 // prop_access
 function prop_access(obj, attr){
-  if (typeof attr !== 'string') return '';
+  if (!isString(attr)) return '';
 
   let args = attr.split('.');
   let path = args[0];
   let value = obj;
 
-  for (var i = 0; i < args.length; i++) {
+  for (let i = 0; i < args.length; i++) {
     if (i > 0 ) path += '.' + args[i];
     if (!value || !value.hasOwnProperty(args[i])) {
       return `${path} not exist`;
@@ -64,22 +70,24 @@ function prop_access(obj, attr){
 
 // verlan
 function verlan(text) {
-  return text
-    .split('')
-    .reverse()
-    .join('')
-    .split(' ')
-    .reverse()
-    .join(' ');
+  if (isString(text))
+    return text
+      .split('')
+      .reverse()
+      .join('')
+      .split(' ')
+      .reverse()
+      .join(' ');
 }
 console.log(verlan(text));
 
 // yoda
 function yoda(text) {
-  return text
-    .split(' ')
-    .reverse()
-    .join(' ');
+  if (isString(text))
+    return text
+      .split(' ')
+      .reverse()
+      .join(' ');
 }
 console.log(yoda(text));
 
@@ -93,11 +101,13 @@ function ordA(a) {
 // vigenere
 function vig(text, key, decode) {
   let i = 0, b;
-  key = key.toUpperCase().replace(/[^A-Z]/g, '');
-  return text.toUpperCase().replace(/[^A-Z]/g, '').replace(/[A-Z]/g, function(a) {
-    b = key[i++ % key.length];
-    return String.fromCharCode(((ordA(a) + (decode ? 26 - ordA(b) : ordA(b))) % 26 + 65));
-  });
+    if (isString(text) && isString(key)) {
+      key = key.toUpperCase().replace(/[^A-Z]/g, '');
+      return text.toUpperCase().replace(/[^A-Z]/g, '').replace(/[A-Z]/g, function(a) {
+          b = key[i++ % key.length];
+          return String.fromCharCode(((ordA(a) + (decode ? 26 - ordA(b) : ordA(b))) % 26 + 65));
+      });
+    }
 }
 
 let key = 'esgi';
