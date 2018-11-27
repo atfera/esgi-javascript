@@ -56,8 +56,8 @@ function type_check_v2(arg, conf) {
 function type_check(conf) {
   let check = false;
   if (conf != null && type_check_v1(conf, 'object')) {
-    if (conf.hasOwnProperty('type') && conf.hasOwnProperty('properties') {
-      
+    if (conf.hasOwnProperty('type') && conf.hasOwnProperty('properties')) {
+
     }
   }
   return check;
